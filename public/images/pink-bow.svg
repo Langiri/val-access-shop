@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Pink satin bow">
+  <rect width="320" height="240" fill="#fde7f1"/>
+  <circle cx="40" cy="40" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="280" cy="200" r="8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="270" cy="50" r="4" fill="#ffffff" opacity="0.6"/>
+  <path d="M160 120 L80 70 Q60 120 80 170 Z" fill="#ff5fa2"/>
+  <path d="M160 120 L240 70 Q260 120 240 170 Z" fill="#ff5fa2"/>
+  <path d="M150 125 L120 200 L140 195 L155 210 Z" fill="#d63384"/>
+  <path d="M170 125 L200 200 L180 195 L165 210 Z" fill="#d63384"/>
+  <rect x="145" y="102" width="30" height="36" rx="10" fill="#d63384"/>
+</svg>

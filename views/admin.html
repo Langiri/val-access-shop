@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Admin | Val Access</title>
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">Val Access</a>
+        <nav class="nav" aria-label="Main">
+          <span class="badge-admin">Admin</span>
+        </nav>
+      </div>
+    </header>
+    <main class="container section">
+      <div class="section-head">
+        <h1>Recent orders</h1>
+        <span class="muted" id="mode"></span>
+      </div>
+      <div class="stats" id="stats"></div>
+      <div class="admin-toolbar">
+        <label for="status-filter">Show</label>
+        <select id="status-filter">
+          <option value="">All orders</option>
+          <option value="pending_payment">Pending payment</option>
+          <option value="paid">Paid</option>
+          <option value="failed">Failed</option>
+        </select>
+        <button class="btn btn-ghost btn-small" type="button" id="refresh">Refresh</button>
+      </div>
+      <div id="orders" aria-live="polite">
+        <p class="loading">Loading orders&hellip;</p>
+      </div>
+    </main>
+    <script type="module" src="/js/admin.js"></script>
+  </body>
+</html>

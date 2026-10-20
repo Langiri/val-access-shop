@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Butterfly clips">
+  <rect width="320" height="240" fill="#eaf7ff"/>
+  <circle cx="40" cy="40" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="280" cy="200" r="8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="270" cy="50" r="4" fill="#ffffff" opacity="0.6"/>
+  <g transform="translate(90 90)">
+    <ellipse cx="-14" cy="-8" rx="16" ry="20" fill="#ff7eb6"/>
+    <ellipse cx="14" cy="-8" rx="16" ry="20" fill="#ff7eb6"/>
+    <ellipse cx="-10" cy="14" rx="10" ry="12" fill="#ff7eb6" opacity="0.8"/>
+    <ellipse cx="10" cy="14" rx="10" ry="12" fill="#ff7eb6" opacity="0.8"/>
+    <rect x="-3" y="-22" width="6" height="44" rx="3" fill="#4a3b52"/>
+  </g>
+  <g transform="translate(170 80)">
+    <ellipse cx="-14" cy="-8" rx="16" ry="20" fill="#8bd3ff"/>
+    <ellipse cx="14" cy="-8" rx="16" ry="20" fill="#8bd3ff"/>
+    <ellipse cx="-10" cy="14" rx="10" ry="12" fill="#8bd3ff" opacity="0.8"/>
+    <ellipse cx="10" cy="14" rx="10" ry="12" fill="#8bd3ff" opacity="0.8"/>
+    <rect x="-3" y="-22" width="6" height="44" rx="3" fill="#4a3b52"/>
+  </g>
+  <g transform="translate(240 110)">
+    <ellipse cx="-14" cy="-8" rx="16" ry="20" fill="#ffd166"/>
+    <ellipse cx="14" cy="-8" rx="16" ry="20" fill="#ffd166"/>
+    <ellipse cx="-10" cy="14" rx="10" ry="12" fill="#ffd166" opacity="0.8"/>
+    <ellipse cx="10" cy="14" rx="10" ry="12" fill="#ffd166" opacity="0.8"/>
+    <rect x="-3" y="-22" width="6" height="44" rx="3" fill="#4a3b52"/>
+  </g>
+  <g transform="translate(120 165)">
+    <ellipse cx="-14" cy="-8" rx="16" ry="20" fill="#b388ff"/>
+    <ellipse cx="14" cy="-8" rx="16" ry="20" fill="#b388ff"/>
+    <ellipse cx="-10" cy="14" rx="10" ry="12" fill="#b388ff" opacity="0.8"/>
+    <ellipse cx="10" cy="14" rx="10" ry="12" fill="#b388ff" opacity="0.8"/>
+    <rect x="-3" y="-22" width="6" height="44" rx="3" fill="#4a3b52"/>
+  </g>
+  <g transform="translate(210 170)">
+    <ellipse cx="-14" cy="-8" rx="16" ry="20" fill="#7ee0a1"/>
+    <ellipse cx="14" cy="-8" rx="16" ry="20" fill="#7ee0a1"/>
+    <ellipse cx="-10" cy="14" rx="10" ry="12" fill="#7ee0a1" opacity="0.8"/>
+    <ellipse cx="10" cy="14" rx="10" ry="12" fill="#7ee0a1" opacity="0.8"/>
+    <rect x="-3" y="-22" width="6" height="44" rx="3" fill="#4a3b52"/>
+  </g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Pearl headband">
+  <rect width="320" height="240" fill="#fff3e6"/>
+  <circle cx="40" cy="40" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="280" cy="200" r="8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="270" cy="50" r="4" fill="#ffffff" opacity="0.6"/>
+  <path d="M60 190 A100 100 0 0 1 260 190" fill="none" stroke="#f7c6d9" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="69.6" cy="145.6" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="79.8" cy="124.1" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="95.0" cy="105.7" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="114.2" cy="91.8" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="136.4" cy="83.0" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="160.0" cy="80.0" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="183.6" cy="83.0" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="205.8" cy="91.8" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="225.0" cy="105.7" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="240.2" cy="124.1" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+  <circle cx="250.4" cy="145.6" r="9" fill="#fffaf2" stroke="#e8dccf" stroke-width="2"/>
+</svg>

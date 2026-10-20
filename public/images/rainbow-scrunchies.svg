@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Rainbow scrunchies">
+  <rect width="320" height="240" fill="#fffafc"/>
+  <circle cx="40" cy="40" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="280" cy="200" r="8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="270" cy="50" r="4" fill="#ffffff" opacity="0.6"/>
+  <circle cx="64" cy="102" r="26" fill="none" stroke="#ff6b6b" stroke-width="16" stroke-dasharray="6 3"/>
+  <circle cx="112" cy="138" r="26" fill="none" stroke="#ffa94d" stroke-width="16" stroke-dasharray="6 3"/>
+  <circle cx="160" cy="102" r="26" fill="none" stroke="#ffd43b" stroke-width="16" stroke-dasharray="6 3"/>
+  <circle cx="208" cy="138" r="26" fill="none" stroke="#69db7c" stroke-width="16" stroke-dasharray="6 3"/>
+  <circle cx="256" cy="102" r="26" fill="none" stroke="#4dabf7" stroke-width="16" stroke-dasharray="6 3"/>
+</svg>

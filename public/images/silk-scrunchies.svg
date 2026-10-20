@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Silk scrunchies">
+  <rect width="320" height="240" fill="#f3eefc"/>
+  <circle cx="40" cy="40" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="280" cy="200" r="8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="270" cy="50" r="4" fill="#ffffff" opacity="0.6"/>
+  <circle cx="80" cy="102" r="34" fill="none" stroke="#f4c2d7" stroke-width="20" stroke-dasharray="6 3"/>
+  <circle cx="160" cy="138" r="34" fill="none" stroke="#d9c8f5" stroke-width="20" stroke-dasharray="6 3"/>
+  <circle cx="240" cy="102" r="34" fill="none" stroke="#f6e3c6" stroke-width="20" stroke-dasharray="6 3"/>
+</svg>
