@@ -166,17 +166,59 @@ Starter products live in [`src/seed-data.js`](src/seed-data.js) and images in
 [`public/images`](public/images). To change products, edit that file (prices are whole KES) and run
 `npm run seed` – existing products are updated by `slug`, new ones are added.
 
-## Deployment notes
+## Deploy
 
-- Any Node.js host works (Render, Railway, Fly.io, a VPS with PM2/systemd, …).
-  Build command: `npm ci --omit=dev`; start command: `npm start`.
-- **SQLite needs a persistent disk.** Point `DATABASE_PATH` at a mounted volume
-  (e.g. `/data/val-access.db`), otherwise orders are lost on redeploy. Back the file up regularly.
-- Serve over **HTTPS** (required by Safaricom for callbacks) and set `NODE_ENV=production`.
-- Behind a proxy/load balancer (Render, Railway, Nginx) set `TRUST_PROXY=1`.
-- Set all secrets (`ADMIN_PASSWORD`, M-Pesa keys, `MPESA_CALLBACK_SECRET`) in your host's
-  environment settings, not in the repository.
-- Run a single instance (SQLite + in-memory rate limiting are designed for one server).
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Langiri/val-access-shop)
+
+### Option A – Render (one click, recommended)
+
+The repo includes a [`render.yaml`](render.yaml) Blueprint that sets up everything for you:
+the web service, a 1 GB persistent disk for the database, a health check, HTTPS, and
+randomly generated `ADMIN_PASSWORD` and `MPESA_CALLBACK_SECRET`.
+
+1. Click **Deploy to Render** above (sign in with GitHub and allow access to this repo).
+2. Leave the M-Pesa fields empty for now and click **Apply**. The first deploy takes a few minutes.
+   The **Starter** plan (about USD 7/month) is needed because free instances can't have a
+   persistent disk, and without one your orders would be lost on every redeploy.
+3. Open the URL Render gives you (e.g. `https://val-access-shop.onrender.com`).
+4. To log in to `/admin`, find the generated password under **Environment → ADMIN_PASSWORD**
+   in the Render dashboard.
+5. **Turn on real payments:** in **Environment**, set `MPESA_MODE` (`sandbox` first, then
+   `production`), `MPESA_CONSUMER_KEY`, `MPESA_CONSUMER_SECRET`, `MPESA_SHORTCODE`,
+   `MPESA_PASSKEY`, `PUBLIC_BASE_URL` (your Render URL or custom domain, with `https://`) and,
+   for a Till, `MPESA_TRANSACTION_TYPE=CustomerBuyGoodsOnline` and `MPESA_PARTY_B`. Save and Render
+   redeploys automatically.
+
+> ⚠️ The Blueprint starts in **mock mode**: orders are marked "paid" without any money moving.
+> Don't share the link with customers until you've switched to `production` and placed a real
+> test order. The admin page and checkout both show which mode is active.
+
+Every push to `main` redeploys automatically. A custom domain (e.g. `shop.valaccess.co.ke`) can be
+added under **Settings → Custom Domains**; then update `PUBLIC_BASE_URL` to match.
+
+### Option B – Docker (Fly.io, Railway, any VPS)
+
+```bash
+docker build -t val-access-shop .
+docker run -d --name val-access -p 3000:3000 \
+  -v val-access-data:/data \
+  --env-file .env -e NODE_ENV=production \
+  val-access-shop
+```
+
+The image stores the database at `/data/val-access.db`. Always mount a volume on `/data`.
+Put the container behind HTTPS (Caddy, Nginx + Let's Encrypt, or your platform's proxy) and set
+`TRUST_PROXY=1`.
+
+### Deployment notes
+
+- **SQLite needs a persistent disk.** Point `DATABASE_PATH` at a mounted volume. Back the file up
+  regularly.
+- Serve over **HTTPS** (Safaricom requires it for callbacks) and set `NODE_ENV=production`.
+- Set all secrets in your host's environment settings, never in the repository.
+- Run a single instance (SQLite and in-memory rate limiting are designed for one server).
+- GitHub Actions ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs lint, format
+  check and tests on every push and pull request.
 
 ## Project structure
 

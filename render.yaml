@@ -1,0 +1,50 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+# Deploy with the "Deploy to Render" button in README.md.
+services:
+  - type: web
+    name: val-access-shop
+    runtime: node
+    # A persistent disk (needed so SQLite orders survive redeploys) requires a paid instance.
+    plan: starter
+    region: frankfurt
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: val-access-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: '1'
+      - key: DATABASE_PATH
+        value: /var/data/val-access.db
+      - key: DELIVERY_FEE_KES
+        value: '0'
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: MPESA_CALLBACK_SECRET
+        generateValue: true
+      # Start in mock mode. Switch to sandbox/production and fill the values below
+      # in the Render dashboard once you have Daraja credentials.
+      - key: MPESA_MODE
+        value: mock
+      - key: MPESA_TRANSACTION_TYPE
+        value: CustomerPayBillOnline
+      - key: MPESA_CONSUMER_KEY
+        sync: false
+      - key: MPESA_CONSUMER_SECRET
+        sync: false
+      - key: MPESA_SHORTCODE
+        sync: false
+      - key: MPESA_PASSKEY
+        sync: false
+      - key: MPESA_PARTY_B
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
