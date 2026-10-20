@@ -70,6 +70,10 @@ export function createOrderService({ db, mpesa, config, logger = console }) {
     recentOrdersByStatus: db.prepare(
       'SELECT * FROM orders WHERE status = ? ORDER BY id DESC LIMIT ?',
     ),
+    countByStatus: db.prepare('SELECT status, COUNT(*) AS count FROM orders GROUP BY status'),
+    paidTotal: db.prepare(
+      "SELECT COALESCE(SUM(total), 0) AS total FROM orders WHERE status = 'paid'",
+    ),
     touchPaymentCheck: db.prepare('UPDATE payments SET last_checked_at = ? WHERE id = ?'),
     setOrderStatus: db.prepare('UPDATE orders SET status = ?, updated_at = ? WHERE id = ?'),
   };
@@ -133,6 +137,9 @@ export function createOrderService({ db, mpesa, config, logger = console }) {
         // Already finalised. A payment confirmed via status query has no receipt yet,
         // so let the (late) success callback fill it in.
         if (status === 'paid' && receipt) statements.fillReceipt.run(receipt, now, payment.id);
+        if (status === 'failed' && receipt) {
+          logger.warn(`Late callback for payment ${payment.id} reported: ${resultDesc}`);
+        }
         return;
       }
       const order = statements.orderById.get(payment.order_id);
@@ -373,10 +380,8 @@ export function createOrderService({ db, mpesa, config, logger = console }) {
   }
 
   function orderStats() {
-    const rows = db.prepare('SELECT status, COUNT(*) AS count FROM orders GROUP BY status').all();
-    const paidTotal = db
-      .prepare("SELECT COALESCE(SUM(total), 0) AS total FROM orders WHERE status = 'paid'")
-      .get().total;
+    const rows = statements.countByStatus.all();
+    const paidTotal = statements.paidTotal.get().total;
     const stats = { pending_payment: 0, paid: 0, failed: 0, paidTotal };
     for (const row of rows) stats[row.status] = row.count;
     return stats;

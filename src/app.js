@@ -28,8 +28,9 @@ function adminAuth(config) {
     const [scheme, encoded] = header.split(' ');
     if (scheme === 'Basic' && encoded) {
       const decoded = Buffer.from(encoded, 'base64').toString('utf8');
-      const password = decoded.slice(decoded.indexOf(':') + 1);
-      if (safeEqual(password, config.adminPassword)) {
+      const separator = decoded.indexOf(':');
+      const password = separator === -1 ? null : decoded.slice(separator + 1);
+      if (password !== null && safeEqual(password, config.adminPassword)) {
         next();
         return;
       }
