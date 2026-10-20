@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout | Val Access</title>
+    <meta
+      name="description"
+      content="Val Access - cute, comfy hair accessories for girls. Pay easily with M-Pesa."
+    />
+    <meta name="theme-color" content="#d63384" />
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">Val Access</a>
+        <nav class="nav" aria-label="Main">
+          <a href="/shop">Shop</a>
+          <a href="/cart" class="cart-link">
+            Cart <span class="badge" data-cart-count hidden>0</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container section narrow">
+      <h1>Checkout</h1>
+      <div id="checkout-message"></div>
+      <div class="checkout-layout">
+        <form id="checkout-form" class="card form" novalidate>
+          <h2>Your details</h2>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input
+              id="name"
+              name="name"
+              autocomplete="name"
+              required
+              minlength="2"
+              maxlength="80"
+            />
+            <p class="field-error" data-error-for="name"></p>
+          </div>
+          <div class="field">
+            <label for="phone">M-Pesa phone number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              placeholder="0712 345 678"
+              required
+            />
+            <p class="hint">You will get an M-Pesa prompt on this number.</p>
+            <p class="field-error" data-error-for="phone"></p>
+          </div>
+          <div class="field">
+            <label for="location">Delivery location / address</label>
+            <textarea
+              id="location"
+              name="location"
+              rows="2"
+              placeholder="e.g. Kilimani, Nairobi - Apartment name, house no."
+              required
+              minlength="3"
+              maxlength="200"
+            ></textarea>
+            <p class="field-error" data-error-for="location"></p>
+          </div>
+          <div class="field">
+            <label for="notes">Notes <span class="optional">(optional)</span></label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="2"
+              maxlength="500"
+              placeholder="Preferred colours, delivery time, etc."
+            ></textarea>
+            <p class="field-error" data-error-for="notes"></p>
+          </div>
+          <p class="field-error" data-error-for="items"></p>
+          <button class="btn btn-primary btn-block" type="submit" id="pay-button">
+            Pay with M-Pesa
+          </button>
+          <p class="hint center" id="mode-hint" hidden></p>
+        </form>
+        <aside class="card summary" id="summary" aria-live="polite">
+          <p class="loading">Loading order summary&hellip;</p>
+        </aside>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          &copy; <span data-year></span> Val Access &middot; Girls' hair accessories &middot; Pay
+          with M-Pesa
+        </p>
+      </div>
+    </footer>
+    <script type="module" src="/js/checkout.js"></script>
+  </body>
+</html>

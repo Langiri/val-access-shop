@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Glitter snap clips">
+  <rect width="320" height="240" fill="#fff8e1"/>
+  <circle cx="40" cy="40" r="6" fill="#ffffff" opacity="0.6"/>
+  <circle cx="280" cy="200" r="8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="270" cy="50" r="4" fill="#ffffff" opacity="0.6"/>
+  <path d="M70 60 L250 68 Q262 76 250 84 L70 76 Q58 68 70 60 Z" fill="#ff7eb6"/>
+  <circle cx="110" cy="69" r="2.5" fill="#fff"/><circle cx="150" cy="71" r="2.5" fill="#fff"/><circle cx="190" cy="73" r="2.5" fill="#fff"/><circle cx="225" cy="75" r="2.5" fill="#fff"/>
+  <path d="M70 100 L250 108 Q262 116 250 124 L70 116 Q58 108 70 100 Z" fill="#b388ff"/>
+  <circle cx="110" cy="109" r="2.5" fill="#fff"/><circle cx="150" cy="111" r="2.5" fill="#fff"/><circle cx="190" cy="113" r="2.5" fill="#fff"/><circle cx="225" cy="115" r="2.5" fill="#fff"/>
+  <path d="M70 140 L250 148 Q262 156 250 164 L70 156 Q58 148 70 140 Z" fill="#ffd166"/>
+  <circle cx="110" cy="149" r="2.5" fill="#fff"/><circle cx="150" cy="151" r="2.5" fill="#fff"/><circle cx="190" cy="153" r="2.5" fill="#fff"/><circle cx="225" cy="155" r="2.5" fill="#fff"/>
+  <path d="M70 180 L250 188 Q262 196 250 204 L70 196 Q58 188 70 180 Z" fill="#8bd3ff"/>
+  <circle cx="110" cy="189" r="2.5" fill="#fff"/><circle cx="150" cy="191" r="2.5" fill="#fff"/><circle cx="190" cy="193" r="2.5" fill="#fff"/><circle cx="225" cy="195" r="2.5" fill="#fff"/>
+</svg>
