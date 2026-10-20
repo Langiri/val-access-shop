@@ -11,13 +11,11 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const ORDER_STATUSES = ['pending_payment', 'paid', 'failed'];
 
-function sha256(value) {
-  return crypto.createHash('sha256').update(String(value)).digest();
-}
-
-/** Constant-time string comparison. */
+/** Constant-time string comparison (only the length can be inferred from timing). */
 function safeEqual(a, b) {
-  return crypto.timingSafeEqual(sha256(a), sha256(b));
+  const left = Buffer.from(String(a));
+  const right = Buffer.from(String(b));
+  return left.length === right.length && crypto.timingSafeEqual(left, right);
 }
 
 function adminAuth(config) {

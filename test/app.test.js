@@ -301,4 +301,30 @@ describe('live-style M-Pesa flow (fake Daraja client)', () => {
     assert.equal(order.status, 'failed');
     assert.match(order.payment.message, /timeout/);
   });
+
+  test('a late callback adds the receipt to a payment confirmed by status query', async () => {
+    const { body } = await placeOrder();
+    const old = new Date(Date.now() - 60 * 1000).toISOString();
+    server.db
+      .prepare('UPDATE payments SET created_at = ? WHERE checkout_request_id = ?')
+      .run(old, `ws_CO_${counter}`);
+    queryResult = { status: 'paid', resultCode: '0', resultDesc: 'processed successfully' };
+    let order = (await server.request(`/api/orders/${body.order.id}`)).body.order;
+    assert.equal(order.status, 'paid');
+    assert.equal(order.payment.receipt, null);
+
+    await server.request(`/api/mpesa/callback/${CALLBACK_SECRET}`, {
+      method: 'POST',
+      body: buildStkCallback({
+        checkoutRequestId: `ws_CO_${counter}`,
+        merchantRequestId: `m-${counter}`,
+        success: true,
+        amount: order.total,
+        phone: '254712345678',
+      }),
+    });
+    order = (await server.request(`/api/orders/${body.order.id}`)).body.order;
+    assert.equal(order.status, 'paid');
+    assert.match(order.payment.receipt, /^MOCK/);
+  });
 });

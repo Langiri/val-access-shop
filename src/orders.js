@@ -62,6 +62,14 @@ export function createOrderService({ db, mpesa, config, logger = console }) {
         mpesa_receipt = COALESCE(:receipt, mpesa_receipt), updated_at = :now
       WHERE id = :id AND status = 'pending'
     `),
+    fillReceipt: db.prepare(`
+      UPDATE payments SET mpesa_receipt = ?, updated_at = ?
+      WHERE id = ? AND status = 'paid' AND mpesa_receipt IS NULL
+    `),
+    recentOrders: db.prepare('SELECT * FROM orders ORDER BY id DESC LIMIT ?'),
+    recentOrdersByStatus: db.prepare(
+      'SELECT * FROM orders WHERE status = ? ORDER BY id DESC LIMIT ?',
+    ),
     touchPaymentCheck: db.prepare('UPDATE payments SET last_checked_at = ? WHERE id = ?'),
     setOrderStatus: db.prepare('UPDATE orders SET status = ?, updated_at = ? WHERE id = ?'),
   };
@@ -121,7 +129,12 @@ export function createOrderService({ db, mpesa, config, logger = console }) {
         receipt,
         now,
       });
-      if (changes === 0) return; // Already finalised (duplicate callback).
+      if (changes === 0) {
+        // Already finalised. A payment confirmed via status query has no receipt yet,
+        // so let the (late) success callback fill it in.
+        if (status === 'paid' && receipt) statements.fillReceipt.run(receipt, now, payment.id);
+        return;
+      }
       const order = statements.orderById.get(payment.order_id);
       if (status === 'paid') {
         statements.setOrderStatus.run('paid', now, order.id);
@@ -331,15 +344,9 @@ export function createOrderService({ db, mpesa, config, logger = console }) {
   }
 
   function listRecentOrders({ status, limit = 50 } = {}) {
-    const params = [];
-    let sql = 'SELECT * FROM orders';
-    if (status) {
-      sql += ' WHERE status = ?';
-      params.push(status);
-    }
-    sql += ' ORDER BY id DESC LIMIT ?';
-    params.push(limit);
-    const orders = db.prepare(sql).all(...params);
+    const orders = status
+      ? statements.recentOrdersByStatus.all(status, limit)
+      : statements.recentOrders.all(limit);
     return orders.map((order) => {
       const payment = statements.latestPayment.get(order.id);
       return {
